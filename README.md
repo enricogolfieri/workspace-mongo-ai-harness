@@ -5,8 +5,6 @@ Antigen bundle (and standalone scripts) that:
 - Symlinks this repo's skills into **installed** AI harnesses
 - Optionally installs those harnesses on **Linux**
 
-Independent of `workspace-mongo`. Skills are linked only for tools that are actually installed.
-
 ## Supported harnesses
 
 | Harness | `--target` | Installed probe | Skill path | Linux install |
@@ -48,8 +46,6 @@ mongo-install-harness all            # update + link already-installed tools onl
 git clone git@github.com:enricogolfieri/workspace-mongo-ai-harness.git
 cd workspace-mongo-ai-harness
 bash install.sh                            # installed harnesses only
-bash install.sh --target cursor            # skip if Cursor is not installed
-bash install-harness.sh --target claude    # Linux: install Claude Code
 ```
 
 ## Commands
