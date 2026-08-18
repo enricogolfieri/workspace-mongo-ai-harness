@@ -4,22 +4,46 @@ Symlinks MongoDB AI skills into your installed AI coding harnesses and wires up
 Glean + DevProd MCP servers (URLs only — no tokens). Optionally installs the
 harnesses themselves on Linux.
 
-## Installation
+## Antigen (recommended)
 
-### Antigen (recommended)
+### Install
 
 ```zsh
 antigen bundle enricogolfieri/workspace-mongo-ai-harness --branch=main
 antigen apply
 ```
 
-### Standalone (no Antigen)
+### What it does on load
+
+1. Registers three shell commands: `mongo-install-skills`, `mongo-install-harness`, `mongo-install-mcp`
+2. Auto-syncs skills into every installed harness (unless `MONGO_HARNESS_AUTO_LINK=0`)
+
+It never downloads or installs harness tools — you do that explicitly with `mongo-install-harness <name>`.
+
+### Commands
+
+```zsh
+mongo-install-skills                  # link skills for every installed harness
+mongo-install-skills --target claude  # link only if claude is installed
+mongo-install-mcp                     # inject Glean + DevProd MCP into configs
+mongo-install-mcp --target claude
+mongo-install-mcp --force             # replace existing glean/devprod servers
+mongo-install-harness claude          # install Claude, then skills + MCP
+mongo-install-harness cursor --desktop
+mongo-install-harness all             # update + skills + MCP for installed tools
+```
+
+`--target`: `cursor` / `claude` / `opencode` / `codex` / `all`. `all` only
+touches already-installed harnesses; name a tool explicitly to install a new one.
+
+## Standalone (no Antigen)
 
 ```bash
 git clone git@github.com:enricogolfieri/workspace-mongo-ai-harness.git
 cd workspace-mongo-ai-harness
 bash install-skills.sh # link skills into installed harnesses
 bash install-mcp.sh    # inject Glean + DevProd MCP servers
+bash install-harness.sh # install all supported harnesses, then skills + MCP
 ```
 
 ## Supported harnesses
@@ -37,22 +61,6 @@ Official Linux installers (run by hand if preferred):
 - Claude Code: https://claude.ai/install.sh
 - OpenCode: https://opencode.ai/install
 - Codex: https://chatgpt.com/codex/install.sh
-
-## Commands
-
-```zsh
-mongo-install-skills                  # link skills for every installed harness
-mongo-install-skills --target claude  # link only if claude is installed
-mongo-install-mcp                     # inject Glean + DevProd MCP into configs
-mongo-install-mcp --target claude
-mongo-install-mcp --force             # replace existing glean/devprod servers
-mongo-install-harness claude          # install Claude, then skills + MCP
-mongo-install-harness cursor --desktop
-mongo-install-harness all             # update + skills + MCP for installed tools
-```
-
-`--target`: `cursor` / `claude` / `opencode` / `codex` / `all`. `all` only
-touches already-installed harnesses; name a tool explicitly to install a new one.
 
 ## Environment variables
 
@@ -89,9 +97,3 @@ touches already-installed harnesses; name a tool explicitly to install a new one
 | Claude Code | `~/.claude.json` | `mcpServers.<name>` |
 | OpenCode | `~/.config/opencode/opencode.json` | `mcp.<name> = {type, url, enabled}` |
 | Codex | `~/.codex/config.toml` | `[mcp_servers.<name>]` with `url` |
-
-## Notes
-
-- On interactive shells the Antigen plugin auto-links skills when the pack or
-  installed-harness set changes. It does **not** download harness tools.
-- Set `MONGO_HARNESS_AUTO_LINK=0` to disable auto-sync.
