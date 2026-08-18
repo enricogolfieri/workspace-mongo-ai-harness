@@ -14,12 +14,12 @@ Portable `SKILL.md` directories plus a unified installer for **installed** AI ha
 A missing harness is skipped. `--target` does not create its config directory.
 
 ```bash
-bash install.sh
-bash install.sh --target claude
-bash install.sh --target cursor
-bash install.sh --target opencode
-bash install.sh --target codex
-bash install.sh --target all
+bash install-skills.sh
+bash install-skills.sh --target claude
+bash install-skills.sh --target cursor
+bash install-skills.sh --target opencode
+bash install-skills.sh --target codex
+bash install-skills.sh --target all
 ```
 
 See the repository README for Linux harness installers (`install-harness.sh` / `mongo-install-harness`).
