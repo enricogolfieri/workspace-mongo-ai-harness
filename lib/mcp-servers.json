@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "glean_default": {
+      "type": "http",
+      "url": "https://mongodb-be.glean.com/mcp/default"
+    },
+    "devprod-mcp": {
+      "url": "https://devprod-mcp-gateway.corp.mongodb.com/mcp"
+    }
+  }
+}

@@ -10,6 +10,10 @@ mongo-install-harness() {
   bash "$mongoai/install-harness.sh" "$@"
 }
 
+mongo-install-mcp() {
+  bash "$mongoai/install-mcp.sh" "$@"
+}
+
 # Interactive-only skill auto-sync. Never installs harness tools.
 # Cache hit: zsh builtins only (no bash, no git).
 _mongoai_cache="${XDG_CACHE_HOME:-$HOME/.cache}/workspace-mongo-ai-harness/installed.fingerprint"

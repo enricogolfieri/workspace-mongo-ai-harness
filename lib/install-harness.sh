@@ -114,9 +114,10 @@ skill_sync_one() {
   local name="$1"
   if mongoai_harness_is_installed "${name}"; then
     bash "${PACK_ROOT}/lib/sync-skills.sh" --force --target "${name}"
+    bash "${PACK_ROOT}/lib/install-mcp.sh" --target "${name}"
   else
-    echo "Warning: ${name} installer finished but the binary is not on PATH yet; skip skill sync." >&2
-    echo "Open a new shell or add ~/.local/bin to PATH, then run: bash ${PACK_ROOT}/install.sh --target ${name}" >&2
+    echo "Warning: ${name} installer finished but the binary is not on PATH yet; skip skill sync and MCP." >&2
+    echo "Open a new shell or add ~/.local/bin to PATH, then run: bash ${PACK_ROOT}/install.sh --target ${name} && bash ${PACK_ROOT}/install-mcp.sh --target ${name}" >&2
   fi
 }
 
@@ -177,10 +178,11 @@ usage() {
   cat <<EOF
 Usage: $0 [--target cursor|claude|opencode|codex|all] [--desktop] [--force]
 
-Install AI harness tools on Linux. Skills are linked only after the tool is present.
+Install AI harness tools on Linux. Skills and MCP are installed only after the
+tool is present. Existing MCP configs are parsed; missing servers are injected.
 
-  cursor|claude|opencode|codex  install that tool if missing, then sync skills
-  all                           update + skill-sync already-installed tools only
+  cursor|claude|opencode|codex  install that tool if missing, then sync skills + MCP
+  all                           update + skill/MCP already-installed tools only
   --desktop                     Cursor IDE (.deb or AppImage); with "all", only if Cursor is installed
   --force                       re-run the vendor installer even if already present
 

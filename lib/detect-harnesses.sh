@@ -49,6 +49,18 @@ mongoai_harness_display_name() {
   esac
 }
 
+# User-global MCP config path. Does not mkdir.
+mongoai_harness_mcp_file() {
+  case "$1" in
+    cursor) printf '%s/mcp.json\n' "${CURSOR_HOME:-$HOME/.cursor}" ;;
+    # Claude Code stores MCP in ~/.claude.json, not inside CLAUDE_HOME (skills dir).
+    claude) printf '%s\n' "${HOME}/.claude.json" ;;
+    opencode) printf '%s/opencode.json\n' "${OPENCODE_HOME:-$HOME/.config/opencode}" ;;
+    codex) printf '%s/config.toml\n' "${CODEX_HOME:-$HOME/.codex}" ;;
+    *) return 1 ;;
+  esac
+}
+
 # Prints installed harness names, one per line, in canonical order.
 # Optional MONGO_HARNESS_TARGETS=cursor,claude filters the installed set.
 mongoai_detect_installed() {
