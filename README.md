@@ -4,7 +4,7 @@ Symlinks MongoDB AI skills into your installed AI coding harnesses and wires up
 Glean + DevProd MCP servers (URLs only — no tokens). Optionally installs the
 harnesses themselves on Linux.
 
-## Antigen (recommended)
+## Antigen 
 
 ### Install
 
