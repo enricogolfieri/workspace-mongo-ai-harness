@@ -117,7 +117,7 @@ skill_sync_one() {
     bash "${PACK_ROOT}/lib/install-mcp.sh" --target "${name}"
   else
     echo "Warning: ${name} installer finished but the binary is not on PATH yet; skip skill sync and MCP." >&2
-    echo "Open a new shell or add ~/.local/bin to PATH, then run: bash ${PACK_ROOT}/install.sh --target ${name} && bash ${PACK_ROOT}/install-mcp.sh --target ${name}" >&2
+    echo "Open a new shell or add ~/.local/bin to PATH, then run: bash ${PACK_ROOT}/install-skills.sh --target ${name} && bash ${PACK_ROOT}/install-mcp.sh --target ${name}" >&2
   fi
 }
 

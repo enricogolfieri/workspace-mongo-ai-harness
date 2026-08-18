@@ -3,7 +3,7 @@
 mongoai=$(dirname "${(%):-%x}")
 
 mongo-install-skills() {
-  bash "$mongoai/install.sh" "$@"
+  bash "$mongoai/install-skills.sh" "$@"
 }
 
 mongo-install-harness() {

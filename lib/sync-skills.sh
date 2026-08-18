@@ -25,7 +25,7 @@ Symlink skills into installed AI harnesses only. Never creates a harness home
 for a tool that is not installed.
 
   --quick   Plugin miss path (default): sync installed harnesses, write cache
-  --force   Same sync; used by install.sh / mongo-install-skills
+  --force   Same sync; used by install-skills.sh / mongo-install-skills
   --target  Filter to one harness (or all). Still requires it to be installed.
 EOF
   exit 0
